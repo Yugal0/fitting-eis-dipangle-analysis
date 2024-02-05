@@ -77,6 +77,7 @@ def TLMlinnew(p,f):
     t12=R1/R2
     S=np.sqrt((1j*omega)**alpha*R1*Q)
     print(S)
+    print(t12-1)
     kk1=-2/3*(S*(t12**(-1/2)/(t12-1)))
     kk2=-2/3*(t12*S/(t12-1))
     Z=[]
