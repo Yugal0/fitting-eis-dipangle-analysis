@@ -12,23 +12,23 @@ def TLMuni(p,f):
     Z= 2*np.sqrt(R1/((omega*1j)**alpha*Q))*(1/(np.tanh(np.sqrt((1j*omega)**alpha*R1*Q))))
     return Z
 
-# @element(num_params=5, units=["Ohm", "Ohm F", "Ohm F","",""],overwrite=True)
-# def TLMtwo(p,f):
+@element(num_params=5, units=["Ohm", "Ohm F", "Ohm F","",""],overwrite=True)
+def TLMtwo(p,f):
    
-#     omega = 2 * np.pi * np.array(f)
-#     R1, R1Q, R2Q, delta1, alpha = p[0], p[1], p[2], p[3], p[4]
-#     delta2=1-delta1
-#     k12=R2Q/R1Q
-#     wc1=1/(R1Q)
-#     wc2=1/(R2Q)
-#     S1=np.sqrt((omega*1j)**alpha/wc1)
-#     S2=np.sqrt((omega*1j)**alpha/wc2)
-#     C1=1/np.tanh(delta1*S1)
-#     C2=1/np.tanh(delta2*S2)
+    omega = 2 * np.pi * np.array(f)
+    R1, R1Q, R2Q, delta1, alpha = p[0], p[1], p[2], p[3], p[4]
+    delta2=1-delta1
+    k12=R2Q/R1Q
+    wc1=1/(R1Q)
+    wc2=1/(R2Q)
+    S1=np.sqrt((omega*1j)**alpha/wc1)
+    S2=np.sqrt((omega*1j)**alpha/wc2)
+    C1=1/np.tanh(delta1*S1)
+    C2=1/np.tanh(delta2*S2)
 
-#     Z=2*(R1)*(C1*C2*S1*k12+S2)/(S1*(C2*S1*k12+C1*S2))
+    Z=2*(R1)*(C1*C2*S1*k12+S2)/(S1*(C2*S1*k12+C1*S2))
 
-#     return Z
+    return Z
 
 # @element(num_params=7, units=["Ohm", "Ohm F", "Ohm F", "","", "",""],overwrite=True)
 # def TLMthree(p,f):
