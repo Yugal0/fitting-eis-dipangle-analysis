@@ -137,7 +137,7 @@ def TLMilinnew(p,f):
     t12=R1/R2
     wclin1=1/(R1*Q)
     wclin2=1/(R2*Q)
-    
+    Z=[]
     for omg in omega:
         # S=np.sqrt((1j*omg)**alpha*R1*Q)
         # print(t12-1)
