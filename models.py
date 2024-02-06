@@ -4,6 +4,7 @@ import numpy as np
 import scipy
 import matplotlib.pyplot as plt
 from mpmath import *
+mp.dps=50
 
 @element(num_params=3, units=["Ohm", "F", ""],overwrite=True)
 def TLMuni(p,f):
