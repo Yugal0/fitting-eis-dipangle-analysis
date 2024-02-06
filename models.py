@@ -12,61 +12,61 @@ def TLMuni(p,f):
     Z= 2*np.sqrt(R1/((omega*1j)**alpha*Q))*(1/(np.tanh(np.sqrt((1j*omega)**alpha*R1*Q))))
     return Z
 
-@element(num_params=5, units=["Ohm", "Ohm F", "Ohm F","",""],overwrite=True)
-def TLMtwo(p,f):
+# @element(num_params=5, units=["Ohm", "Ohm F", "Ohm F","",""],overwrite=True)
+# def TLMtwo(p,f):
    
-    omega = 2 * np.pi * np.array(f)
-    R1, R1Q, R2Q, delta1, alpha = p[0], p[1], p[2], p[3], p[4]
-    delta2=1-delta1
-    k12=R2Q/R1Q
-    wc1=1/(R1Q)
-    wc2=1/(R2Q)
-    S1=np.sqrt((omega*1j)**alpha/wc1)
-    S2=np.sqrt((omega*1j)**alpha/wc2)
-    C1=1/np.tanh(delta1*S1)
-    C2=1/np.tanh(delta2*S2)
+#     omega = 2 * np.pi * np.array(f)
+#     R1, R1Q, R2Q, delta1, alpha = p[0], p[1], p[2], p[3], p[4]
+#     delta2=1-delta1
+#     k12=R2Q/R1Q
+#     wc1=1/(R1Q)
+#     wc2=1/(R2Q)
+#     S1=np.sqrt((omega*1j)**alpha/wc1)
+#     S2=np.sqrt((omega*1j)**alpha/wc2)
+#     C1=1/np.tanh(delta1*S1)
+#     C2=1/np.tanh(delta2*S2)
 
-    Z=2*(R1)*(C1*C2*S1*k12+S2)/(S1*(C2*S1*k12+C1*S2))
+#     Z=2*(R1)*(C1*C2*S1*k12+S2)/(S1*(C2*S1*k12+C1*S2))
 
-    return Z
+#     return Z
 
-@element(num_params=7, units=["Ohm", "Ohm F", "Ohm F", "","", "",""],overwrite=True)
-def TLMthree(p,f):
-    omega = 2 * np.pi * np.array(f)
-    R1, R1Q, R2Q, R3Q, delta1, delta2, alpha = p[0], p[1], p[2],p[3], p[4], p[5], p[6]
-    delta3=1-delta1-delta2
-    delta2=delta2
-    Q=R1Q/R1
-    R2=R2Q/Q
-    R3=R3Q/Q
-    k12=R2/R1
-    k13=R3/R1
-    wc1=1/(R1*Q)
-    wc2=1/(R2*Q)
-    wc3=1/(R3*Q)
-    S1=np.sqrt((omega*1j)**alpha/wc1)
-    S2=np.sqrt((omega*1j)**alpha/wc2)
-    S3=np.sqrt((omega*1j)**alpha/wc3)
-    C1=1/np.tanh(delta1*S1)
-    C2=1/np.tanh(delta2*S2)
-    C3=1/np.tanh(delta3*S3)
+# @element(num_params=7, units=["Ohm", "Ohm F", "Ohm F", "","", "",""],overwrite=True)
+# def TLMthree(p,f):
+#     omega = 2 * np.pi * np.array(f)
+#     R1, R1Q, R2Q, R3Q, delta1, delta2, alpha = p[0], p[1], p[2],p[3], p[4], p[5], p[6]
+#     delta3=1-delta1-delta2
+#     delta2=delta2
+#     Q=R1Q/R1
+#     R2=R2Q/Q
+#     R3=R3Q/Q
+#     k12=R2/R1
+#     k13=R3/R1
+#     wc1=1/(R1*Q)
+#     wc2=1/(R2*Q)
+#     wc3=1/(R3*Q)
+#     S1=np.sqrt((omega*1j)**alpha/wc1)
+#     S2=np.sqrt((omega*1j)**alpha/wc2)
+#     S3=np.sqrt((omega*1j)**alpha/wc3)
+#     C1=1/np.tanh(delta1*S1)
+#     C2=1/np.tanh(delta2*S2)
+#     C3=1/np.tanh(delta3*S3)
 
-    Z=2*(R1)*((S1*S3*C1*k12**2+S2*C2*(S1*C1*C3*k13+S3)*k12+S2**2*C3*k13)/(S1*(S3*S1*k12**2+S2*C2*(S3*C1+S1*C3*k13)*k12+S2**2*C1*C3*k13)))
+#     Z=2*(R1)*((S1*S3*C1*k12**2+S2*C2*(S1*C1*C3*k13+S3)*k12+S2**2*C3*k13)/(S1*(S3*S1*k12**2+S2*C2*(S3*C1+S1*C3*k13)*k12+S2**2*C1*C3*k13)))
 
-    return Z
+#     return Z
 
-@element(num_params=4, units=["Ohm", "Ohm F", "Ohm F", ""],overwrite=True)
-def TLMlin(p,f):
-    omega = 2 * np.pi * np.array(f)
-    R1, R1Q, R2Q, alpha = p[0], p[1], p[2], p[3]
-    Q=R1Q/R1
-    R2=R2Q/Q
-    t12=R1/R2
-    S=np.sqrt((1j*omega)**alpha*R1*Q)
-    kk1=-2/3*(S*(t12**(-1/2)/(t12-1)))
-    kk2=-2/3*(t12*S/(t12-1))
-    Z = (2*R1/S)*(scipy.special.iv(1/3, kk1)*scipy.special.iv(2/3, kk2)-scipy.special.iv(-1/3, kk1)*scipy.special.iv(-2/3, kk2))/((scipy.special.iv(-1/3, kk1))*scipy.special.iv(1/3, kk2)-scipy.special.iv(1/3, kk1)*scipy.special.iv(-1/3, kk2))
-    return Z
+# @element(num_params=4, units=["Ohm", "Ohm F", "Ohm F", ""],overwrite=True)
+# def TLMlin(p,f):
+#     omega = 2 * np.pi * np.array(f)
+#     R1, R1Q, R2Q, alpha = p[0], p[1], p[2], p[3]
+#     Q=R1Q/R1
+#     R2=R2Q/Q
+#     t12=R1/R2
+#     S=np.sqrt((1j*omega)**alpha*R1*Q)
+#     kk1=-2/3*(S*(t12**(-1/2)/(t12-1)))
+#     kk2=-2/3*(t12*S/(t12-1))
+#     Z = (2*R1/S)*(scipy.special.iv(1/3, kk1)*scipy.special.iv(2/3, kk2)-scipy.special.iv(-1/3, kk1)*scipy.special.iv(-2/3, kk2))/((scipy.special.iv(-1/3, kk1))*scipy.special.iv(1/3, kk2)-scipy.special.iv(1/3, kk1)*scipy.special.iv(-1/3, kk2))
+#     return Z
 
 @element(num_params=4, units=["Ohm", "Ohm F", "Ohm F", ""],overwrite=True)
 def TLMlinnew(p,f):
@@ -76,8 +76,6 @@ def TLMlinnew(p,f):
     R2=R2Q/Q
     t12=R1/R2
     S=np.sqrt((1j*omega)**alpha*R1*Q)
-    print(S)
-    print(t12-1)
     kk1=-2/3*(S*(t12**(-1/2)/(t12-1)))
     kk2=-2/3*(t12*S/(t12-1))
     Z=[]
@@ -86,6 +84,8 @@ def TLMlinnew(p,f):
         # print(t12-1)
         kk1=-2/3*(S*(t12**(-1/2)/(t12-1)))
         kk2=-2/3*(t12*S/(t12-1))
+        print("deno")
+        print(((mp.besseli(-1/3, kk1))*mp.besseli(1/3, kk2)-mp.besseli(1/3, kk1)*mp.besseli(-1/3, kk2)))
         Zelem = (2*R1/S)*(mp.besseli(1/3, kk1)*mp.besseli(2/3, kk2)-mp.besseli(-1/3, kk1)*mp.besseli(-2/3, kk2))/((mp.besseli(-1/3, kk1))*mp.besseli(1/3, kk2)-mp.besseli(1/3, kk1)*mp.besseli(-1/3, kk2))
         Zelem=mp.nstr(Zelem,n=50)
         Zelem = Zelem.replace(' ','').replace('(','').replace(')','') 
