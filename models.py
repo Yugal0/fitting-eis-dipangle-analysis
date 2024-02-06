@@ -137,11 +137,19 @@ def TLMilinnew(p,f):
     t12=R1/R2
     wclin1=1/(R1*Q)
     wclin2=1/(R2*Q)
-    S1=np.sqrt((1j*omega)**alpha/wclin1)
-    S2=np.sqrt((1j*omega)**alpha/wclin2)
     
-    Z = -(2*1j*R1/S1)*(((mp.yv(1,-2*1j*t12*S2/(t12-1)))*(mp.jv(0,-2*1j*S1/(t12-1))))-((mp.jv(1,-2*1j*t12*S2/(t12-1)))*(mp.yv(0,-2*1j*S1/(t12-1)))))/(((mp.jv(1,-2*1j*t12*S2/(t12-1)))*(mp.yv(1,-2*1j*S1/(t12-1))))-((mp.yv(1,-2*1j*t12*S2/(t12-1)))*(mp.jv(1,-2*1j*S1/(t12-1)))))
-    
+    for omg in omega:
+        # S=np.sqrt((1j*omg)**alpha*R1*Q)
+        # print(t12-1)
+        S1=np.sqrt((1j*omg)**alpha/wclin1)
+        S2=np.sqrt((1j*omg)**alpha/wclin2)
+        Zelem = -(2*1j*R1/S1)*(((mp.besselk(1,-2*1j*t12*S2/(t12-1)))*(mp.jv(0,-2*1j*S1/(t12-1))))-((mp.jv(1,-2*1j*t12*S2/(t12-1)))*(mp.besselk(0,-2*1j*S1/(t12-1)))))/(((mp.jv(1,-2*1j*t12*S2/(t12-1)))*(mp.besselk(1,-2*1j*S1/(t12-1))))-((mp.besselk(1,-2*1j*t12*S2/(t12-1)))*(mp.jv(1,-2*1j*S1/(t12-1)))))
+        Zelem=mp.nstr(Zelem,n=50)
+        Zelem = Zelem.replace(' ','').replace('(','').replace(')','') 
+        Z.append(Zelem)
+
+    Z=np.asarray(Z,dtype=complex)
+
     return Z
 
 @element(num_params=4, units=["Ohm", "Ohm F", "Ohm F", ""],overwrite=True)
