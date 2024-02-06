@@ -143,7 +143,7 @@ def TLMilinnew(p,f):
         # print(t12-1)
         S1=np.sqrt((1j*omg)**alpha/wclin1)
         S2=np.sqrt((1j*omg)**alpha/wclin2)
-        Zelem = -(2*1j*R1/S1)*(((mp.besselk(1,-2*1j*t12*S2/(t12-1)))*(mp.jv(0,-2*1j*S1/(t12-1))))-((mp.jv(1,-2*1j*t12*S2/(t12-1)))*(mp.besselk(0,-2*1j*S1/(t12-1)))))/(((mp.jv(1,-2*1j*t12*S2/(t12-1)))*(mp.besselk(1,-2*1j*S1/(t12-1))))-((mp.besselk(1,-2*1j*t12*S2/(t12-1)))*(mp.jv(1,-2*1j*S1/(t12-1)))))
+        Zelem = -(2*1j*R1/S1)*(((mp.besselk(1,-2*1j*t12*S2/(t12-1)))*(mp.besselj(0,-2*1j*S1/(t12-1))))-((mp.besselj(1,-2*1j*t12*S2/(t12-1)))*(mp.besselk(0,-2*1j*S1/(t12-1)))))/(((mp.besselj(1,-2*1j*t12*S2/(t12-1)))*(mp.besselk(1,-2*1j*S1/(t12-1))))-((mp.besselk(1,-2*1j*t12*S2/(t12-1)))*(mp.besselj(1,-2*1j*S1/(t12-1)))))
         Zelem=mp.nstr(Zelem,n=50)
         Zelem = Zelem.replace(' ','').replace('(','').replace(')','') 
         Z.append(Zelem)
