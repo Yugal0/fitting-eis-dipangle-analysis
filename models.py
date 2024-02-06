@@ -85,6 +85,7 @@ def TLMlinnew(p,f):
         # print(t12-1)
         kk1=-2/3*(S*(t12**(-1/2)/(t12-1)))
         kk2=-2/3*(t12*S/(t12-1))
+        print("deno1 :",(mp.besseli(-1/3, kk1))*mp.besseli(1/3, kk2))
         print("deno")
         print(((mp.besseli(-1/3, kk1))*mp.besseli(1/3, kk2)-mp.besseli(1/3, kk1)*mp.besseli(-1/3, kk2)))
         Zelem = (2*R1/S)*(mp.besseli(1/3, kk1)*mp.besseli(2/3, kk2)-mp.besseli(-1/3, kk1)*mp.besseli(-2/3, kk2))/((mp.besseli(-1/3, kk1))*mp.besseli(1/3, kk2)-mp.besseli(1/3, kk1)*mp.besseli(-1/3, kk2))
